@@ -1,0 +1,149 @@
+<% layout("/layouts/boilerplate") %>
+
+<section class="new-event-page">
+
+    <div class="container">
+
+        <div class="new-event-header">
+
+            <p class="events-label">
+                🪔 COMMUNITY MANAGEMENT
+            </p>
+
+            <h1>
+                Edit Event
+            </h1>
+
+        </div>
+
+        <div class="event-form-wrapper">
+
+            <form
+                action="/events/<%= event._id %>?_method=PUT"
+                method="POST"
+                class="event-form"
+            >
+
+                <div class="form-group">
+
+                    <label>Event Title</label>
+
+                    <input
+                        type="text"
+                        name="title"
+                        value="<%= event.title %>"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Description</label>
+
+                    <textarea
+                        name="description"
+                        rows="5"
+                        required
+                    ><%= event.description %></textarea>
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label>Date</label>
+
+                        <input
+                            type="date"
+                            name="date"
+                            value="<%= new Date(event.date).toISOString().split('T')[0] %>"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Time</label>
+
+                        <input
+                            type="time"
+                            name="time"
+                            value="<%= event.time %>"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Location</label>
+
+                    <input
+                        type="text"
+                        name="location"
+                        value="<%= event.location %>"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Category</label>
+
+                    <select name="category">
+
+                        <option value="Puja"
+                            <%= event.category === "Puja" ? "selected" : "" %>>
+                            Puja
+                        </option>
+
+                        <option value="Cultural"
+                            <%= event.category === "Cultural" ? "selected" : "" %>>
+                            Cultural
+                        </option>
+
+                        <option value="Competition"
+                            <%= event.category === "Competition" ? "selected" : "" %>>
+                            Competition
+                        </option>
+
+                        <option value="Social"
+                            <%= event.category === "Social" ? "selected" : "" %>>
+                            Social
+                        </option>
+
+                        <option value="Other"
+                            <%= event.category === "Other" ? "selected" : "" %>>
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="create-event-btn"
+                >
+                    Update Event ✨
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>

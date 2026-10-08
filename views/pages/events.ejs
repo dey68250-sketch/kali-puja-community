@@ -1,0 +1,120 @@
+<% layout("/layouts/boilerplate") %>
+
+<section class="events-page">
+
+    <div class="container">
+
+        <div class="events-header">
+
+            <p class="events-label">
+                ✨ WHAT'S HAPPENING
+            </p>
+
+            <h1>
+                Community Events
+            </h1>
+
+            <p>
+                Celebrate, participate and create memories
+                together with our community.
+            </p>
+
+        </div>
+
+
+        <div class="events-grid">
+
+            <% if (events.length === 0) { %>
+
+                <div class="no-events">
+
+                    <span>🪔</span>
+
+                    <h3>
+                        No upcoming events
+                    </h3>
+
+                    <p>
+                        New events will be announced soon.
+                    </p>
+
+                </div>
+
+            <% } %>
+
+
+            <% events.forEach(event => { %>
+
+                <article class="event-card">
+
+                    <% if (event.image && event.image.url) { %>
+
+                        <img
+                            src="<%= event.image.url %>"
+                            alt="<%= event.title %>"
+                        >
+
+                    <% } else { %>
+
+                        <div class="event-image-placeholder">
+                            🪔
+                        </div>
+
+                    <% } %>
+
+
+                    <div class="event-card-content">
+
+                        <span class="event-category">
+                            <%= event.category %>
+                        </span>
+
+                        <h2>
+                            <%= event.title %>
+                        </h2>
+
+                        <p>
+                            <%= event.description %>
+                        </p>
+
+
+                        <div class="event-details">
+
+                            <div>
+                                📅
+                                <%= new Date(event.date)
+                                    .toLocaleDateString("en-IN") %>
+                            </div>
+
+                            <div>
+                                🕐 <%= event.time %>
+                            </div>
+
+                            <div>
+                                📍 <%= event.location %>
+                            </div>
+
+                            <form
+                                action="/events/<%= event._id %>?_method=DELETE"
+                                method="POST"
+                            >
+                            <% if(currentUser)  {%>
+                            <button type="submit" class="btn btn-danger">
+                                Delete
+                            </button>
+                            <% } %>
+                        </form>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            <% }) %>
+
+        </div>
+
+    </div>
+
+</section>

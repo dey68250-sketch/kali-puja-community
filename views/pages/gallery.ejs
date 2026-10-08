@@ -1,0 +1,148 @@
+<% layout("/layouts/boilerplate") %>
+
+<section class="gallery-page">
+
+    <!-- HERO -->
+    <div class="gallery-hero">
+
+        <div class="container">
+
+            <p class="gallery-eyebrow">
+                OUR MEMORIES
+            </p>
+
+            <h1>
+                Maa Kali <span>Gallery</span>
+            </h1>
+
+            <p>
+                Moments of devotion, celebration and togetherness.
+            </p>
+
+            <% if (typeof currentUser !== "undefined" && currentUser) { %>
+
+                <a
+                    href="/gallery/new"
+                    class="gallery-upload-btn"
+                >
+                    + Upload Image
+                </a>
+
+            <% } %>
+
+        </div>
+
+    </div>
+
+
+    <!-- GALLERY -->
+    <div class="container gallery-container">
+
+        <% if (!gallery || gallery.length === 0) { %>
+
+            <div class="gallery-empty">
+
+                <div class="empty-icon">
+                    🪔
+                </div>
+
+                <h2>No memories yet</h2>
+
+                <p>
+                    Our gallery is waiting for beautiful moments.
+                </p>
+
+                <% if (typeof currentUser !== "undefined" && currentUser) { %>
+
+                    <a
+                        href="/gallery/new"
+                        class="gallery-upload-btn"
+                    >
+                        Upload First Image
+                    </a>
+
+                <% } %>
+
+            </div>
+
+        <% } else { %>
+
+            <div class="gallery-grid">
+
+                <% gallery.forEach((item) => { %>
+
+                    <article class="gallery-card">
+
+                        <div class="gallery-image-wrapper">
+
+                            <img
+                                src="<%= item.image.url %>"
+                                alt="<%= item.title %>"
+                                class="gallery-image"
+                            >
+
+                            <div class="gallery-overlay">
+
+                                <div>
+
+                                    <span class="gallery-category">
+                                        <%= item.category %>
+                                    </span>
+
+                                    <h3>
+                                        <%= item.title %>
+                                    </h3>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="gallery-info">
+
+                            <h3>
+                                <%= item.title %>
+                            </h3>
+
+                            <% if (item.description) { %>
+
+                                <p>
+                                    <%= item.description %>
+                                </p>
+
+                            <% } %>
+
+                            <% if (typeof currentUser !== "undefined" && currentUser) { %>
+
+                                <form
+                                    action="/gallery/<%= item._id %>?_method=DELETE"
+                                    method="POST"
+                                    onsubmit="return confirm('Delete this image?')"
+                                >
+
+                                    <button
+                                        type="submit"
+                                        class="gallery-delete-btn"
+                                    >
+                                        Delete
+                                    </button>
+
+                                </form>
+
+                            <% } %>
+
+                        </div>
+
+                    </article>
+
+                <% }); %>
+
+            </div>
+
+        <% } %>
+
+    </div>
+
+</section>

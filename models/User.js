@@ -1,0 +1,25 @@
+const mongoose = require("mongoose")
+const passportLocalMongoose= require("passport-local-mongoose").default
+
+const userSchema = mongoose.Schema({
+    email : {
+        type: String,
+        required: true,
+        unique: true,
+        lowercase: true,
+        trim: true
+    },
+    role: {
+        type: String,
+        enum:["ADMIN"],
+        default: "ADMIN"
+    },
+},
+    {
+        timestamps: true
+    }
+)
+
+userSchema.plugin(passportLocalMongoose)
+
+module.exports = mongoose.model("User",userSchema)

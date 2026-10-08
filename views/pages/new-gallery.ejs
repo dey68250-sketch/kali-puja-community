@@ -1,0 +1,144 @@
+<% layout("/layouts/boilerplate") %>
+
+<section class="gallery-upload-page">
+
+    <div class="container">
+
+        <div class="upload-card">
+
+            <div class="upload-header">
+
+                <div class="upload-icon">
+                    🖼️
+                </div>
+
+                <p class="gallery-eyebrow">
+                    ADMIN PANEL
+                </p>
+
+                <h1>
+                    Upload <span>Memory</span>
+                </h1>
+
+                <p>
+                    Add a beautiful moment from our Maa Kali Puja celebration.
+                </p>
+
+            </div>
+
+
+            <form
+                action="/gallery"
+                method="POST"
+                enctype="multipart/form-data"
+                class="gallery-form"
+            >
+
+                <!-- TITLE -->
+
+                <div class="form-group">
+
+                    <label>
+                        Image Title
+                    </label>
+
+                    <input
+                        type="text"
+                        name="title"
+                        placeholder="e.g. Maa Kali Puja 2026"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- DESCRIPTION -->
+
+                <div class="form-group">
+
+                    <label>
+                        Description
+                    </label>
+
+                    <textarea
+                        name="description"
+                        rows="4"
+                        placeholder="Write something about this memory..."
+                    ></textarea>
+
+                </div>
+
+
+                <!-- CATEGORY -->
+
+                <div class="form-group">
+
+                    <label>
+                        Category
+                    </label>
+
+                    <select name="category">
+
+                        <option value="Puja">
+                            Puja
+                        </option>
+
+                        <option value="Cultural">
+                            Cultural
+                        </option>
+
+                        <option value="Decoration">
+                            Decoration
+                        </option>
+
+                        <option value="Community">
+                            Community
+                        </option>
+
+                        <option value="Other">
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- IMAGE -->
+
+                <div class="form-group">
+
+                    <label>
+                        Select Image
+                    </label>
+
+                    <input
+                        type="file"
+                        name="image"
+                        accept="image/*"
+                        required
+                    >
+
+                    <small>
+                        JPG, JPEG, PNG or WEBP
+                    </small>
+
+                </div>
+
+
+                <!-- SUBMIT -->
+
+                <button
+                    type="submit"
+                    class="gallery-submit-btn"
+                >
+                    Upload Image →
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
