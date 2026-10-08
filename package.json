@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/dey68250-sketch/kali-puja-community/issues"
   },
-  "homepage": "https://github.com/dey68250-sketch/kali-puja-community#readme"
+  "homepage": "https://github.com/dey68250-sketch/kali-puja-community#readme",
+  "dependencies": {
+    "dotenv": "^18.0.6"
+  }
 }
